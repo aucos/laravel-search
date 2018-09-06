@@ -1,0 +1,21 @@
+{
+    "name": "aucos/laravel-search",
+    "description": "Search",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tobias Sommer",
+            "email": "toby.sommer@mac.com"
+        }
+    ],
+    "require": {
+        "php": "^7.1",
+        "laravel/framework": "~5.5.0|~5.6.0|~5.7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Aucos\\LaravelSearch\\": "src"
+        }
+    },
+    "minimum-stability": "dev"
+}
