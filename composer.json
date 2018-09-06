@@ -1,11 +1,19 @@
 {
     "name": "aucos/laravel-search",
-    "description": "Search",
+    "description": "Search and sort Laravel's Eloquent models",
+    "keywords": [
+        "aucos",
+        "laravel-search",
+        "search",
+        "laravel"
+    ],
     "license": "MIT",
     "authors": [
         {
             "name": "Tobias Sommer",
-            "email": "toby.sommer@mac.com"
+            "email": "tsommer@acs47.pro",
+            "homepage": "http://acs47.pro",
+            "role": "Developer"
         }
     ],
     "require": {
@@ -17,5 +25,9 @@
             "Aucos\\LaravelSearch\\": "src"
         }
     },
-    "minimum-stability": "dev"
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
