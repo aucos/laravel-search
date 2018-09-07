@@ -5,7 +5,7 @@ namespace Aucos\LaravelSearch\Searcher;
 class Like extends Searcher
 {
     /**
-     * Which conditions must ne met -based on the search query
+     * Which conditions must be met -based on the search query
      * and database field name- in order to use this searcher
      *
      * @return bool
