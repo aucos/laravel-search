@@ -22,6 +22,7 @@ class SearchFactory
             new Compare($searchQuery, $dbField),
             new DateFrom($searchQuery, $dbField),
             new DateTo($searchQuery, $dbField),
+            new ExactId($searchQuery, $dbField),
         ];
 
         foreach ($availableSearcher as $searcher) {
