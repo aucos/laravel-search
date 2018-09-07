@@ -84,6 +84,7 @@ trait Search
     private function performSearch(Builder $query, array $dbFields, $q)
     {
         $q = trim($q);
+
         if ($q !== '') {
             foreach ($dbFields as $dbField) {
                 if (SearchFactory::isOuterWhere($dbField)) {
@@ -129,6 +130,7 @@ trait Search
     private function getFieldsFromModel()
     {
         $fields = [];
+
         if ($this->searchableIsSet()) {
             $fields = $this->searchable;
         } elseif ($this->fillableIsSet()) {
@@ -147,6 +149,7 @@ trait Search
             $toField = $date . DateTo::suffix();
             $searchable[$toField] = [$toField];
         }
+
         return $searchable;
     }
 

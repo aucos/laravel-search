@@ -9,8 +9,8 @@ abstract class Searcher
     /**
      * @var string
      */
-
     protected $searchQuery;
+
     /**
      * @var string
      */

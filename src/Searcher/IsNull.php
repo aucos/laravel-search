@@ -32,6 +32,6 @@ class IsNull extends Searcher
      */
     public function value()
     {
-        return NULL;
+        return null;
     }
 }
