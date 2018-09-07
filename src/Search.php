@@ -144,13 +144,22 @@ trait Search
     {
         foreach ($this->getDates() as $date) {
             $fromField = $date . DateFrom::suffix();
-            $searchable[$fromField] = [$fromField];
-
             $toField = $date . DateTo::suffix();
-            $searchable[$toField] = [$toField];
-        }
 
+            if ($this->hasDateSearchOverwrite($date)) {
+                $searchable[$fromField] = [$this->dateSearchOverwrite[$date] . DateFrom::suffix()];
+                $searchable[$toField] = [$this->dateSearchOverwrite[$date] . DateTo::suffix()];
+            } else {
+                $searchable[$fromField] = [$fromField];
+                $searchable[$toField] = [$toField];
+            }
+        }
         return $searchable;
+    }
+
+    private function hasDateSearchOverwrite($date)
+    {
+        return isset($this->dateSearchOverwrite) && array_key_exists($date, $this->dateSearchOverwrite);
     }
 
     private function normalizeQueryName($alias, $dbFields)
