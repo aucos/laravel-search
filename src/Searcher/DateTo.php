@@ -48,7 +48,6 @@ class DateTo extends Searcher
             $toDateTime = Carbon::parse($this->searchQuery);
             return $toDateTime->endOfDay();
         } catch (\Exception $e) {
-            dump($e);
             return null;
         }
     }
