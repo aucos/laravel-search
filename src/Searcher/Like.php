@@ -12,6 +12,10 @@ class Like extends Searcher
      */
     public function useMe()
     {
+        if ($this->isDateFieldWithNonDateValue()) {
+            return false;
+        }
+
         return true;
     }
 
@@ -43,5 +47,18 @@ class Like extends Searcher
         return starts_with($searchQuery, '%') || ends_with($searchQuery, '%')
             ? $searchQuery
             : "%{$searchQuery}%";
+    }
+
+    /**
+     * The DateFrom/DateTo Searcher are ignored if it can't parse the value.
+     * This can happen if the Placeholder is submitted...
+     * Without this check, the Like Searcher would become active, because
+     * it is the last search to take place.
+     *
+     * @return bool
+     */
+    private function isDateFieldWithNonDateValue(): bool
+    {
+        return ends_with($this->field(), [DateFrom::suffix(), DateTo::suffix()]);
     }
 }

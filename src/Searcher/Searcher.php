@@ -73,10 +73,12 @@ abstract class Searcher
     public abstract function value();
 
     public function searchOperation(Builder $query) {
-        return $query->orWhere(
-            $this->field(),
-            $this->operator(),
-            $this->value()
-        );
+        if ($this->useMe()) {
+            return $query->orWhere(
+                $this->field(),
+                $this->operator(),
+                $this->value()
+            );
+        }
     }
 }
