@@ -18,6 +18,7 @@ class SearchFactory
     {
         $availableSearcher = [
             new IsNull($searchQuery, $dbField),
+            new Money($searchQuery, $dbField), // must stand before compare
             new GroupedCount($searchQuery, $dbField), // must stand before compare
             new Compare($searchQuery, $dbField),
             new DateFrom($searchQuery, $dbField),
