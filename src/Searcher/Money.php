@@ -13,7 +13,7 @@ class Money extends Searcher
     public function useMe()
     {
         return starts_with($this->searchQuery, ['>=', '<=', '!=', '>', '<', '=']) &&
-            ends_with($this->dbField, static::suffix()) && $this->value();
+            ends_with($this->dbField, static::suffix());
     }
 
     /**
