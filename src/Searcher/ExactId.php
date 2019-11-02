@@ -2,6 +2,8 @@
 
 namespace Aucos\LaravelSearch\Searcher;
 
+use Illuminate\Support\Str;
+
 class ExactId extends Searcher
 {
     /**
@@ -12,7 +14,7 @@ class ExactId extends Searcher
      */
     public function useMe()
     {
-        return ends_with($this->dbField, '_id');
+        return Str::endsWith($this->dbField, '_id');
     }
 
     /**

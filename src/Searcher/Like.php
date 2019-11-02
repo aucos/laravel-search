@@ -2,6 +2,8 @@
 
 namespace Aucos\LaravelSearch\Searcher;
 
+use Illuminate\Support\Str;
+
 class Like extends Searcher
 {
     /**
@@ -26,7 +28,7 @@ class Like extends Searcher
      */
     public function operator()
     {
-        if (starts_with($this->searchQuery, '!')) {
+        if (Str::startsWith($this->searchQuery, '!')) {
             return 'not like';
         }
 
@@ -40,11 +42,11 @@ class Like extends Searcher
      */
     public function value()
     {
-        $searchQuery = starts_with($this->searchQuery, '!')
+        $searchQuery = Str::startsWith($this->searchQuery, '!')
             ? substr($this->searchQuery, 1)
             : $this->searchQuery;
 
-        return starts_with($searchQuery, '%') || ends_with($searchQuery, '%')
+        return Str::startsWith($searchQuery, '%') || Str::endsWith($searchQuery, '%')
             ? $searchQuery
             : "%{$searchQuery}%";
     }
@@ -59,6 +61,6 @@ class Like extends Searcher
      */
     private function isDateFieldWithNonDateValue(): bool
     {
-        return ends_with($this->field(), [DateFrom::suffix(), DateTo::suffix()]);
+        return Str::endsWith($this->field(), [DateFrom::suffix(), DateTo::suffix()]);
     }
 }

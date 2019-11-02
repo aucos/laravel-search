@@ -7,6 +7,7 @@ use Aucos\LaravelSearch\Searcher\DateTo;
 use Aucos\LaravelSearch\Searcher\GroupedCount;
 use Aucos\LaravelSearch\Searcher\SearchFactory;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Str;
 
 trait Search
 {
@@ -62,7 +63,7 @@ trait Search
     private function globalSearch(Builder $query)
     {
         $dbFields = $this->normalizedSearchable->flatten()->filter(function ($dbField) {
-            return !ends_with($dbField, [DateFrom::suffix(), DateTo::suffix(), GroupedCount::suffix()]);
+            return !Str::endsWith($dbField, [DateFrom::suffix(), DateTo::suffix(), GroupedCount::suffix()]);
         })->toArray();
 
         $q = $this->request->get('search');

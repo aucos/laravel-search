@@ -2,6 +2,8 @@
 
 namespace Aucos\LaravelSearch\Searcher;
 
+use Illuminate\Support\Str;
+
 class Money extends Searcher
 {
     /**
@@ -12,8 +14,8 @@ class Money extends Searcher
      */
     public function useMe()
     {
-        return starts_with($this->searchQuery, ['>=', '<=', '!=', '>', '<', '=']) &&
-            ends_with($this->dbField, static::suffix());
+        return Str::startsWith($this->searchQuery, ['>=', '<=', '!=', '>', '<', '=']) &&
+            Str::endsWith($this->dbField, static::suffix());
     }
 
     /**
@@ -34,11 +36,11 @@ class Money extends Searcher
      */
     public function operator()
     {
-        if (starts_with($this->searchQuery, ['>=', '<=', '!='])) {
+        if (Str::startsWith($this->searchQuery, ['>=', '<=', '!='])) {
             return substr($this->searchQuery, 0, 2);
         }
 
-        if (starts_with($this->searchQuery, ['>', '<', '='])) {
+        if (Str::startsWith($this->searchQuery, ['>', '<', '='])) {
             return substr($this->searchQuery, 0, 1);
         }
 
@@ -53,11 +55,11 @@ class Money extends Searcher
      */
     public function value()
     {
-        if (starts_with($this->searchQuery, ['>=', '<=', '!='])) {
+        if (Str::startsWith($this->searchQuery, ['>=', '<=', '!='])) {
             return intval(substr($this->searchQuery, 2) * 100);
         }
 
-        if (starts_with($this->searchQuery, ['>', '<', '='])) {
+        if (Str::startsWith($this->searchQuery, ['>', '<', '='])) {
             return intval(substr($this->searchQuery, 1) * 100);
         }
 

@@ -2,6 +2,8 @@
 
 namespace Aucos\LaravelSearch\Searcher;
 
+use Illuminate\Support\Str;
+
 class Compare extends Searcher
 {
     /**
@@ -12,7 +14,7 @@ class Compare extends Searcher
      */
     public function useMe()
     {
-        return starts_with($this->searchQuery, ['>=', '<=', '!=', '>', '<', '=']);
+        return Str::startsWith($this->searchQuery, ['>=', '<=', '!=', '>', '<', '=']);
     }
 
     /**
@@ -23,11 +25,11 @@ class Compare extends Searcher
      */
     public function operator()
     {
-        if (starts_with($this->searchQuery, ['>=', '<=', '!='])) {
+        if (Str::startsWith($this->searchQuery, ['>=', '<=', '!='])) {
             return substr($this->searchQuery, 0, 2);
         }
 
-        if (starts_with($this->searchQuery, ['>', '<', '='])) {
+        if (Str::startsWith($this->searchQuery, ['>', '<', '='])) {
             return substr($this->searchQuery, 0, 1);
         }
 
@@ -42,11 +44,11 @@ class Compare extends Searcher
      */
     public function value()
     {
-        if (starts_with($this->searchQuery, ['>=', '<=', '!='])) {
+        if (Str::startsWith($this->searchQuery, ['>=', '<=', '!='])) {
             return substr($this->searchQuery, 2);
         }
 
-        if (starts_with($this->searchQuery, ['>', '<', '='])) {
+        if (Str::startsWith($this->searchQuery, ['>', '<', '='])) {
             return substr($this->searchQuery, 1);
         }
 

@@ -3,6 +3,7 @@
 namespace Aucos\LaravelSearch\Searcher;
 
 use Carbon\Carbon;
+use Illuminate\Support\Str;
 
 class DateFrom extends Searcher
 {
@@ -14,7 +15,7 @@ class DateFrom extends Searcher
      */
     public function useMe()
     {
-        return ends_with($this->dbField, static::suffix()) && $this->value();
+        return Str::endsWith($this->dbField, static::suffix()) && $this->value();
     }
 
     /**

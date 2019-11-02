@@ -3,6 +3,7 @@
 namespace Aucos\LaravelSearch\Searcher;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Str;
 
 class GroupedCount extends Searcher
 {
@@ -14,7 +15,7 @@ class GroupedCount extends Searcher
      */
     public function useMe()
     {
-        return ends_with($this->dbField, static::suffix());
+        return Str::endsWith($this->dbField, static::suffix());
     }
 
     /**
@@ -34,11 +35,11 @@ class GroupedCount extends Searcher
      */
     public function operator()
     {
-        if (starts_with($this->searchQuery, ['>=', '<='])) {
+        if (Str::startsWith($this->searchQuery, ['>=', '<='])) {
             return substr($this->searchQuery, 0, 2);
         }
 
-        if (starts_with($this->searchQuery, ['>', '<'])) {
+        if (Str::startsWith($this->searchQuery, ['>', '<'])) {
             return substr($this->searchQuery, 0, 1);
         }
 
@@ -53,11 +54,11 @@ class GroupedCount extends Searcher
     public function value()
     {
         $value = $this->searchQuery;
-        if (starts_with($this->searchQuery, ['>=', '<='])) {
+        if (Str::startsWith($this->searchQuery, ['>=', '<='])) {
             $value = substr($this->searchQuery, 2);
         }
 
-        if (starts_with($this->searchQuery, ['>', '<'])) {
+        if (Str::startsWith($this->searchQuery, ['>', '<'])) {
             $value = substr($this->searchQuery, 1);
         }
 

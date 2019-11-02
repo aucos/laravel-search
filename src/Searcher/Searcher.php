@@ -3,6 +3,7 @@
 namespace Aucos\LaravelSearch\Searcher;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Str;
 
 abstract class Searcher
 {
@@ -51,7 +52,7 @@ abstract class Searcher
      */
     public function field()
     {
-        if (ends_with($this->dbField, static::suffix())) {
+        if (Str::endsWith($this->dbField, static::suffix())) {
             return substr($this->dbField, 0, -1 * strlen(static::suffix()));
         }
 

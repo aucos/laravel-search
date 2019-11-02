@@ -2,6 +2,8 @@
 
 namespace Aucos\LaravelSearch\Searcher;
 
+use Illuminate\Support\Str;
+
 class SearchFactory
 {
     /**
@@ -38,7 +40,7 @@ class SearchFactory
 
     public static function isOuterWhere($dbField)
     {
-        return ends_with($dbField, '__raw');
+        return Str::endsWith($dbField, '__raw');
     }
 
     public static function isInnerWhere($dbField)
