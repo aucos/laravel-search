@@ -186,7 +186,7 @@ trait Search
 
     private function addSelfTableName($dbField)
     {
-        if (str_contains($dbField, '.')) {
+        if (Str::contains($dbField, '.')) {
             return $dbField;
         }
 
