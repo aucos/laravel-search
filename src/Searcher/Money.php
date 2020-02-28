@@ -14,8 +14,7 @@ class Money extends Searcher
      */
     public function useMe()
     {
-        return Str::startsWith($this->searchQuery, ['>=', '<=', '!=', '>', '<', '=']) &&
-            Str::endsWith($this->dbField, static::suffix());
+        return Str::endsWith($this->dbField, static::suffix());
     }
 
     /**
@@ -44,7 +43,7 @@ class Money extends Searcher
             return substr($this->searchQuery, 0, 1);
         }
 
-        throw new \InvalidArgumentException('searchQuery must be >=, <=, !=, >, < or =');
+        return '=';
     }
 
     /**
@@ -63,6 +62,6 @@ class Money extends Searcher
             return intval(substr($this->searchQuery, 1) * 100);
         }
 
-        throw new \InvalidArgumentException('searchQuery must be >=, <=, !=, >, < or =');
+        return intval($this->searchQuery);
     }
 }
