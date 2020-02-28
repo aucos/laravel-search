@@ -62,6 +62,6 @@ class Money extends Searcher
             return intval(substr($this->searchQuery, 1) * 100);
         }
 
-        return intval($this->searchQuery);
+        return intval($this->searchQuery) * 100;
     }
 }
