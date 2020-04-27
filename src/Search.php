@@ -21,11 +21,17 @@ trait Search
      */
     private $normalizedSearchable;
 
-    public function scopeSearch(Builder $query)
+    public function scopeSearch(Builder $query, $localData = null)
     {
-        $this->request = request();
+        if ($localData) {
+            $this->request = collect($localData);
+            $hasData = count($localData);
+        } else {
+            $this->request = request();
+            $hasData = count($this->request->request);
+        }
 
-        if (count($this->request->request)) {
+        if ($hasData) {
             $this->normalizeSearchArray();
 
             if ($this->request->has('search')) {
