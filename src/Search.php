@@ -72,7 +72,7 @@ trait Search
             return !Str::endsWith($dbField, [DateFrom::suffix(), DateTo::suffix(), GroupedCount::suffix()]);
         })->toArray();
 
-        $q = $this->request->get('search', '');
+        $q = $this->request->get('search');
         $this->performSearch($query, $dbFields, $q);
 
         return $query;
@@ -81,16 +81,16 @@ trait Search
     private function localSearch(Builder $query)
     {
         $this->normalizedSearchable->each(function ($dbFields, $aliasName) use ($query) {
-            $q = $this->request->get($aliasName, '');
+            $q = $this->request->get($aliasName);
             $this->performSearch($query, $dbFields, $q);
         });
 
         return $query;
     }
 
-    private function performSearch(Builder $query, array $dbFields, $q = '')
+    private function performSearch(Builder $query, array $dbFields, $q)
     {
-        $q = trim($q);
+        $q = trim((string)$q);
 
         if ($q !== '') {
             foreach ($dbFields as $dbField) {
