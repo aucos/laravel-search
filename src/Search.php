@@ -28,7 +28,7 @@ trait Search
             $hasData = count($localData);
         } else {
             $this->request = request();
-            $hasData = count($this->request->request);
+            $hasData = count($this->request->all());
         }
 
         if ($hasData) {
