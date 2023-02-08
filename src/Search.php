@@ -149,7 +149,15 @@ trait Search
 
     private function addDateFields($searchable)
     {
-        foreach ($this->getDates() as $date) {
+        $dateFields = $this->getDates();
+
+        foreach ($this->getCasts() as $attribute => $cast) {
+            if ($cast === 'datetime') {
+                $dateFields[] = $attribute;
+            }
+        }
+
+        foreach ($dateFields as $date) {
             $fromField = $date . DateFrom::suffix();
             $toField = $date . DateTo::suffix();
 
